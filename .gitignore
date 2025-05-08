@@ -1,0 +1,85 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+
+### VS Code ###
+.vscode/
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Spring Boot ###
+/target/
+*.log
+*.pid
+*.gz
+
+### IDEs ###
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+### OS-specific ###
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+### Otros ###
+# Archivos de configuración temporales
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Archivos de logs
+*.log
+*.log.*
+
+# Archivos de pruebas
+/test-output/
