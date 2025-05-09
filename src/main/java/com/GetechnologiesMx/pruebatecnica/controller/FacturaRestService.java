@@ -1,31 +1,46 @@
 package com.GetechnologiesMx.pruebatecnica.controller;
 
 import com.GetechnologiesMx.pruebatecnica.model.Factura;
-import com.GetechnologiesMx.pruebatecnica.model.Persona;
-import com.GetechnologiesMx.pruebatecnica.service.Directorio;
 import com.GetechnologiesMx.pruebatecnica.service.Ventas;
+import com.GetechnologiesMx.pruebatecnica.web.ApiResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/facturas")
 public class FacturaRestService {
     private final Ventas ventas;
-    private final Directorio directorio;
 
-    public FacturaRestService(Ventas ventas, Directorio directorio) {
+    public FacturaRestService(Ventas ventas) {
         this.ventas = ventas;
-        this.directorio = directorio;
     }
 
     @GetMapping("/{identificacion}")
-    public List<Factura> getFacturasByPersona(@PathVariable String identificacion) {
-        Persona persona = directorio.findPersonaByIdentificacion(identificacion);
-        return ventas.findFacturasByPersona(persona);
+    public ResponseEntity<ApiResponse<List<Factura>>> getFacturasByPersona(
+            @PathVariable String identificacion) {
+        List<Factura> lista = ventas.findFacturasByPersona(identificacion);
+        ApiResponse<List<Factura>> response = new ApiResponse<>(
+            200,
+            "Facturas obtenidas para: " + identificacion,
+            lista,
+            null
+        );
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping
-    public Factura createFactura(@RequestBody Factura factura) {
-        return ventas.storeFactura(factura);
+    @PostMapping("/{identificacion}")
+    public ResponseEntity<ApiResponse<Factura>> createFactura(
+            @PathVariable String identificacion,
+            @RequestBody Factura factura) {
+        Factura creada = ventas.storeFactura(factura, identificacion);
+        ApiResponse<Factura> response = new ApiResponse<>(
+            201,
+            "Factura creada para: " + identificacion,
+            creada,
+            null
+        );
+        return ResponseEntity.status(201).body(response);
     }
 }
