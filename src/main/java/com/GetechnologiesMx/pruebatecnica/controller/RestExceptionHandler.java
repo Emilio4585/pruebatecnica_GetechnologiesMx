@@ -1,10 +1,11 @@
 package com.GetechnologiesMx.pruebatecnica.controller;
 
 
-import com.GetechnologiesMx.pruebatecnica.service.DuplicateResourceException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.GetechnologiesMx.pruebatecnica.service.DuplicateResourceException;
 
 @ControllerAdvice
 public class RestExceptionHandler {

@@ -34,7 +34,18 @@ public class FacturaRestService {
     public ResponseEntity<ApiResponse<Factura>> createFactura(
             @PathVariable String identificacion,
             @RequestBody Factura factura) {
+
         Factura creada = ventas.storeFactura(factura, identificacion);
+        if (creada == null) {
+            
+            ApiResponse<Factura> response = new ApiResponse<>(
+                400,
+                "Error al crear la factura para: " + identificacion,
+                null,
+                "No se pudo crear la factura"
+            );
+            return ResponseEntity.status(400).body(response);
+        }
         ApiResponse<Factura> response = new ApiResponse<>(
             201,
             "Factura creada para: " + identificacion,
